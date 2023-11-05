@@ -4,13 +4,16 @@ FROM python:3.10-slim
 WORKDIR /usr/app
 
 # Copy requirements into workdir
-COPY main.py models requirements.txt ./
+COPY  main.py requirements.txt ./
 
 # Install requirements in the workdir
 RUN pip3 install -r requirements.txt
 
+# Add models directory into workdir
+ADD models ./models
+
 # Expose Server Port
 EXPOSE 8000
 
-# Run the server
-RUN python3 main.py
+# Execute the server
+CMD ["python3", "main.py"]
