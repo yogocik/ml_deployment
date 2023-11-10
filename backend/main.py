@@ -115,7 +115,7 @@ def predict_data_with_tf(data: PredictionInput) -> PredictionOutput:
                                     max_scale=scaler[col]['max'], 
                                     min_scale=scaler[col]['min']))
     # Prediction Request
-    post_url = os.path.join(os.getenv('TF_SERVING_API_HOST'),'ann/versions/5:predict')
+    post_url = os.path.join(os.getenv('TF_SERVING_API_HOST'),'ann/versions/7:predict')
     data = subset_df[['housing_median_age','total_rooms',
                     'total_bedrooms','population']].values[0]
     print("Data : ", data)
