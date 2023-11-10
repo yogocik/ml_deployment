@@ -9,8 +9,6 @@ import requests
 from dotenv import load_dotenv
 import os
 import json
-from fastapi.staticfiles import StaticFiles
-import json
 
 load_dotenv()
 
@@ -23,8 +21,6 @@ app.add_middleware( # Only for development purpose
     allow_methods=["GET", "POST"],
     allow_headers=["*"],
 )
-
-app.mount("/models", StaticFiles(directory="models/ann_js"), name="models")
 
 @app.get("/")
 async def index():
@@ -119,7 +115,7 @@ def predict_data_with_tf(data: PredictionInput) -> PredictionOutput:
                                     max_scale=scaler[col]['max'], 
                                     min_scale=scaler[col]['min']))
     # Prediction Request
-    post_url = os.getenv('TF_SERVING_API_HOST')
+    post_url = os.path.join(os.getenv('TF_SERVING_API_HOST'),'ann/versions/5:predict')
     data = subset_df[['housing_median_age','total_rooms',
                     'total_bedrooms','population']].values[0]
     print("Data : ", data)

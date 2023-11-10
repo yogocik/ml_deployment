@@ -143,7 +143,7 @@ const AppForm = () => {
     return (
         <div className="container-fluid h-100 bg-light text-dark">
             <div className="row justify-content-center align-items-center">
-                <h1>My ML Application Form</h1>
+                <h1>House Price Prediction with Tensorflow</h1>
             </div>
             <hr />
             <div className="row justify-content-center align-items-center h-100">
