@@ -9,10 +9,13 @@ import requests
 from dotenv import load_dotenv
 import os
 import json
+from fastapi.staticfiles import StaticFiles
+import json
 
 load_dotenv()
 
 app = FastAPI()
+
 
 app.add_middleware( # Only for development purpose
     CORSMiddleware,
@@ -20,6 +23,8 @@ app.add_middleware( # Only for development purpose
     allow_methods=["GET", "POST"],
     allow_headers=["*"],
 )
+
+app.mount("/models", StaticFiles(directory="models/ann_js"), name="models")
 
 @app.get("/")
 async def index():
